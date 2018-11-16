@@ -6,22 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JS</title>
     <script src="main.js"></script>
+    
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="calendar">
-            <div class="day-info">
+            <div class="day-info grey-line">
                     <p class="time"></p>
                     <p class="date"></p>
                 </div>
-                <div class="calendar-info">
+                <div class="calendar-info grey-line">
                     <div class="d-row">
                             <p class="focus-month"></p>
                             <div class="up-arrow"> < </div>
                             <div class="down-arrow"> > </div>
                         </div>
-                        <div class="calendar-body"></div>
+                        <div class="d-row week">
+                            <p class="day-name">Mon</p>
+                            <p class="day-name">Tue</p>
+                            <p class="day-name">Wed</p>
+                            <p class="day-name">Thu</p>
+                            <p class="day-name">Fri</p>
+                            <p class="day-name">Sat</p>
+                            <p class="day-name">Sun</p>
+                        </div>
+                        <div class="calendar-body">
+
+                        </div>
                 </div>  
+                <p class="selected-day"></p>
 
     </div>
  

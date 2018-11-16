@@ -1,3 +1,8 @@
+body{
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+}
 .d-row{
     display: flex;
     flex-direction: row
@@ -5,32 +10,72 @@
 .calendar{
     background-color: #464646;
     width: 360px;
-    height: 450px;
+    height: 465px;
+    margin-left: 10px;
 }
-.day-info{
+.grey-line{
     border-bottom: #6c6c6c 1px solid;
 }
 .time{
-    color: #ffffff;
     font-size: 30px;
+    line-height: 35px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 25px;
 }
 .date{
+    padding-left: 25px;
     color: #33634b;
+    line-height: 25px;
 }
 .focus-month{
-    width: 300px;
+    padding-top: 15px;
+    padding-left: 25px;
+    width: 225px;
 }
 .up-arrow, .down-arrow{
-    color: #ffffff;
     width: 40px;
     height: 40px;
-    font-size: 50px;
+    text-align: center;
+    font-size: 25px;
     transform: rotate(90deg);
+    cursor: pointer;
+}
+.calendar-body{
+    padding-left: 10px;
+}
+.day-name{
+    color: #f9f9f9;
+    text-align: center;
+    line-height: 20px;
+    width: 43px;
+    height: 20px;
+    border: 2px solid transparent;
+}
+.week{
+    padding-left: 10px;
+    margin-top: 20px;
+}
+.day-of-month{
+    color: #f9f9f9;
+    text-align: center;
+    line-height: 40px;
+    width: 43px;
+    height: 40px;
+    border: 2px solid transparent;
+}
+.day-of-month:hover{
+    border: 2px solid #1fb265;
+}
+.shadow-day{
+    color: #999999;
 }
 
-.day-of-month{
-    color: #ffffff;
-    padding: 5px;
-    margin: 5px;
+.today{
+    background-color: #00833f;
+    border: #000000 2px solid;    
+    box-shadow: 0 0 10px rgba(0, 131, 63, 0.5);
+}
+.selected-day{
+    padding-left: 25px;
+    padding-top: 20px;
 }
