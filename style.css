@@ -1,4 +1,36 @@
+.d-row{
+    display: flex;
+    flex-direction: row
+}
 .calendar{
     background-color: #464646;
     width: 360px;
+    height: 450px;
+}
+.day-info{
+    border-bottom: #6c6c6c 1px solid;
+}
+.time{
+    color: #ffffff;
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.date{
+    color: #33634b;
+}
+.focus-month{
+    width: 300px;
+}
+.up-arrow, .down-arrow{
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    font-size: 50px;
+    transform: rotate(90deg);
+}
+
+.day-of-month{
+    color: #ffffff;
+    padding: 5px;
+    margin: 5px;
 }
