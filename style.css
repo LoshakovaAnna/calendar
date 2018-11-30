@@ -1,5 +1,4 @@
-body{
-    
+body{    
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ffffff;
 }
@@ -7,11 +6,17 @@ body{
     display: flex;
     flex-direction: row
 }
+
 .calendar{
     background-color: #464646;
     width: 360px;
-    height: 465px;
-    margin-left: 10px;
+    height: 475px;
+    margin: 0 auto;
+}
+.day-padding{
+    padding-left: 17px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .grey-line{
     border-bottom: #6c6c6c 1px solid;
@@ -19,17 +24,15 @@ body{
 .time{
     font-size: 30px;
     line-height: 35px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding-left: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
 }
 .date{
-    padding-left: 25px;
-    color: #33634b;
+    color: #488667;
     line-height: 25px;
 }
 .focus-month{
     padding-top: 15px;
-    padding-left: 25px;
+    padding-left: 17px;
     width: 225px;
 }
 .up-arrow, .down-arrow{
@@ -65,17 +68,20 @@ body{
 }
 .day-of-month:hover{
     border: 2px solid #1fb265;
+    background-color: #7c7878; 
 }
 .shadow-day{
     color: #999999;
 }
-
+.day-selected-on-calendar{    
+    border: 2px solid #00833f;
+}
 .today{
     background-color: #00833f;
     border: #000000 2px solid;    
     box-shadow: 0 0 10px rgba(0, 131, 63, 0.5);
 }
 .selected-day{
-    padding-left: 25px;
+    padding-left: 17px;
     padding-top: 20px;
 }

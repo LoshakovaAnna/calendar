@@ -1,51 +1,65 @@
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener('DOMContentLoaded', init);
 
-var nameMonth = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-var nameDay = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-var today = new Date();     
+const nameMonth = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const nameDay = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+var dateToChange = new Date();
 
 function init(){
-    var currentDate = new Date();
 
-    let time = document.querySelector(".time");
-    time.textContent = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
-    time.textContent = currentDate.toLocaleTimeString();
-    let date = document.querySelector(".date");
-    date.textContent = nameDay[currentDate.getDay()] + ", " + nameMonth[currentDate.getMonth()] + " "+ currentDate.getDate() + ", " + currentDate.getFullYear();
+    updateTime();
+    setInterval(updateTime, 1000);
+    showCurrentDate();
+    updateFocusDate(dateToChange);    
+    refreshDaysOfMonth(dateToChange);
+    addEventListenerCalender();
+    addEventListenerArrow();   
+};
 
-    let focusMonth = document.querySelector(".focus-month");
 
-    focusMonth.textContent = nameMonth[currentDate.getMonth()] + " " + currentDate.getFullYear();
-       
-    let selectDayOnCalendar = document.querySelector(".selected-day");
-    selectDayOnCalendar.textContent = "Today";
-    
-    showAllDaysOfMoth(currentDate);
-    
-    let  calendarBody = document.querySelector(".calendar-body");
+function updateTime(){    
+    let time = document.querySelector('.time');
+    let date = new Date();
+    time.textContent = date.toLocaleTimeString();
+};
+
+function showCurrentDate(){
+    let date = document.querySelector('.date');
+    let today = new Date();
+    date.textContent = nameDay[today.getDay()] + ', ' + nameMonth[today.getMonth()] + ' '+ today.getDate() + ', ' + today.getFullYear();
+};
+
+function updateFocusDate(date){    
+    let focusMonth = document.querySelector('.focus-month');
+    focusMonth.textContent = nameMonth[date.getMonth()] + ' ' + date.getFullYear();       
+};
+
+function addEventListenerCalender(){
+    let  calendarBody = document.querySelector('.calendar-body');
     calendarBody.addEventListener('click', changeSelectedDay);
+};
 
-    let arrowPlus = document.querySelector(".down-arrow");
-    arrowPlus.addEventListener('click', function(){
-        currentDate.setMonth( currentDate.getMonth() + 1);
-        focusMonth.textContent = nameMonth[currentDate.getMonth()] + " " + currentDate.getFullYear();
-        
-        showAllDaysOfMoth(currentDate);
-    })
-    let arrowMinus = document.querySelector(".up-arrow");
+function  addEventListenerArrow(){
+    let arrowsOfChangeMonth = document.querySelector('.arrows-change-month');
+    arrowsOfChangeMonth.addEventListener('click', changeMonth);
+};
 
-    arrowMinus.addEventListener('click', function(){
-        currentDate.setMonth( currentDate.getMonth() - 1);
-        focusMonth.textContent = nameMonth[currentDate.getMonth()] + " " + currentDate.getFullYear();
-    
-        showAllDaysOfMoth(currentDate);
-    })
-}
+function changeMonth(e){
+    if(e.target.classList.contains('down-arrow')){
+        dateToChange.setMonth( dateToChange.getMonth() + 1);
+    }
+    else{
+        dateToChange.setMonth( dateToChange.getMonth() - 1);    
+    } 
+    updateFocusDate(dateToChange);
+    refreshDaysOfMonth(dateToChange);
+};
 
-function showAllDaysOfMoth(selectDate){
-    let  calendarBody = document.querySelector(".calendar-body");
+function refreshDaysOfMonth(selectDate){    
+    let  calendarBody = document.querySelector('.calendar-body');
     destroyChildren(calendarBody);
 
+    let today = new Date(); 
     let templDay = new Date(selectDate.getFullYear(), selectDate.getMonth(),selectDate.getDate());
     templDay.setDate(1);
   
@@ -55,21 +69,20 @@ function showAllDaysOfMoth(selectDate){
         }
         else
         templDay.setDate(templDay.getDate() - templDay.getDay()+1);
-    }
-    
+    }    
 
     for (let i = 0; i < 6; i++) {
-        let weekElement = document.createElement("div");
-        weekElement.classList.add("d-row")
+        let weekElement = document.createElement('div');
+        weekElement.classList.add('d-row')
         for (let j = 0; j < 7; j++) {
-            let dayElement = document.createElement("div");
-            dayElement.classList.add("day-of-month");
+            let dayElement = document.createElement('div');
+            dayElement.classList.add('day-of-month');
             dayElement.textContent = templDay.getDate();
             if (templDay.getMonth() != selectDate.getMonth()){
-                dayElement.classList.add("shadow-day");
+                dayElement.classList.add('shadow-day');
             };
             if (templDay.toDateString() == today.toDateString()) {
-                dayElement.classList.add("today");
+                dayElement.classList.add('today');
             }
             templDay.setDate(templDay.getDate() + 1);
         
@@ -77,21 +90,25 @@ function showAllDaysOfMoth(selectDate){
         }
         calendarBody.appendChild(weekElement);
     }
-}
+};
 
 function changeSelectedDay(e) {    
-        let listWords = [...document.querySelectorAll(".day-of-month")];    
-        let  i = listWords.indexOf(e.target);
-        i += 1;
-        let selectDayOnCalendar = document.querySelector(".selected-day");
-        selectDayOnCalendar.textContent = nameDay[i%7] + " " + e.target.textContent;     
-      
-}
+    let listWords = [...document.querySelectorAll('.day-of-month')];    
+    
+    for (let i = 0; i < listWords.length; i++) {
+        listWords[i].classList.remove('day-selected-on-calendar');        
+    };
+    e.target.classList.add('day-selected-on-calendar');
+
+    let  index = listWords.indexOf(e.target);
+    index += 1;
+    let selectDayOnCalendar = document.querySelector('.selected-day');
+    selectDayOnCalendar.textContent = nameDay[index%7] + ' ' + e.target.textContent;   
+};
 
 function destroyChildren(node)
 {
     while (node.firstChild){      
-        
         node.removeChild(node.firstChild);
     }
-} 
+}; 
