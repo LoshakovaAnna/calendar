@@ -10,7 +10,7 @@ body{
 .calendar{
     background-color: #464646;
     width: 360px;
-    height: 475px;
+    min-height: 475px;
     margin: 0 auto;
 }
 .day-padding{
